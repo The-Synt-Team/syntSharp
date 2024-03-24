@@ -8,6 +8,9 @@ namespace syntSharp;
 
 public static class Program
 {
+	public static string version = "1.0";
+	public static string user = "";
+
 	[Plug("Mosa.Runtime.StartUp::BootOptions")]
 	public static void SetBootOptions()
 	{
@@ -21,12 +24,33 @@ public static class Program
 		Debug.WriteLine("Program::EntryPoint()");
 
 		Console.ResetColor();
-		Console.BackgroundColor = ConsoleColor.Green;
-		Console.ForegroundColor = ConsoleColor.White;
 		Console.Clear();
-		Console.WriteLine("Hello World!");
+		Console.WriteLine("synt# v" + version);
+		Console.WriteLine("Type 'help' for commands.\n");
 
-		for (; ; )
-		{ }
+		Login();
+	}
+
+	static void Login() {
+		Console.Write("Username: ");
+		user = Console.ReadLine();
+		Commands();
+	}
+
+	static void Commands() {
+		while (true)
+		{
+			Console.Write(user + "@synt >> ");
+
+			var cmd = Console.ReadLine();
+
+			if (cmd == "quit")
+				break;
+
+			if (!AppManager.Execute(cmd))
+			{
+				Console.WriteLine("Unknown command: " + cmd);
+			}
+		}
 	}
 }
