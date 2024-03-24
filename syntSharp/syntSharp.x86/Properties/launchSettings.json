@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"syntSharp.x86": {
+			"commandName": "Executable",
+			"executablePath": "dotnet",
+			"commandLineArgs": "Tools/Mosa.Tool.Launcher.dll syntSharp.x86.dll",
+			"workingDirectory": "bin"
+		}
+	}
+}
